@@ -27,7 +27,8 @@ if op = '/'.
     output = |{ number1 } / { number2 } = { result }|.            
   catch cx_sy_zerodivide.                
     output = 'Division by zero'.        
-  endtry.    elseif op = '*'.        
+  endtry.    
+elseif op = '*'.        
   result = number1 * number2.        
   output = |{ number1 } * { number2 } = { result }|.    
 elseif op = '+'.        
