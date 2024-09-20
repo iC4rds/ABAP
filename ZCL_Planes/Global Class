@@ -1,2 +1,54 @@
-CLASS zgl_20_oo DEFINITION  PUBLIC  FINAL  CREATE PUBLIC .    PUBLIC SECTION.      INTERFACES if_oo_adt_classrun .  PROTECTED SECTION.  PRIVATE SECTION.ENDCLASS.      CLASS zgl_20_oo IMPLEMENTATION.      METHOD if_oo_adt_classrun~main.      DATA lr_plane TYPE REF TO lcl_plane.    DATA lrt_plane TYPE TABLE OF REF TO lcl_plane.      lr_plane = new lcl_plane(        iv_producer = 'Airbus'        iv_type = 'A380'     ).    APPEND lr_plane TO lrt_plane.      lr_plane = new lcl_plane(        iv_producer = 'Boing'        iv_type = '747-8'     ).    APPEND lr_plane TO lrt_plane.      lr_plane = new lcl_plane(        iv_producer = 'filler'        iv_type = 'filler'     ).    lr_plane->plane1(            IMPORTING                ev_producer = lr_plane->mv_producer                ev_type = lr_plane->mv_type         ).    APPEND lr_plane TO lrt_plane.      lr_plane = new lcl_plane(        iv_producer = 'filler'        iv_type = 'filler'     ).    lr_plane->plane2(            IMPORTING                ev_producer = lr_plane->mv_producer                ev_type = lr_plane->mv_type         ).    APPEND lr_plane TO lrt_plane.      DATA lr_wa_plane TYPE REF TO lcl_plane.    LOOP AT lrt_plane INTO lr_wa_plane.              out->write( |Producer: { lr_wa_plane->mv_producer } / Type: { lr_wa_plane->mv_type }| ).    ENDLOOP.      ENDMETHOD.ENDCLASS.
+CLASS zgl_20_oo DEFINITION  PUBLIC  FINAL  CREATE PUBLIC .    
+PUBLIC SECTION.      
+INTERFACES if_oo_adt_classrun .  
+PROTECTED SECTION.  
+PRIVATE SECTION.ENDCLASS.      
+
+CLASS zgl_20_oo IMPLEMENTATION.      
+METHOD if_oo_adt_classrun~main.      
+
+DATA lr_plane TYPE REF TO lcl_plane.    
+DATA lrt_plane TYPE TABLE OF REF TO lcl_plane.      
+
+lr_plane = new lcl_plane(        
+  iv_producer = 'Airbus'        
+  iv_type = 'A380'     
+  ).    
+APPEND lr_plane TO lrt_plane.      
+
+lr_plane = new lcl_plane(        
+  iv_producer = 'Boing'        
+  iv_type = '747-8'     
+  ).    
+APPEND lr_plane TO lrt_plane.      
+
+lr_plane = new lcl_plane(        
+  iv_producer = 'filler'        
+  iv_type = 'filler'     
+  ).    
+lr_plane->plane1(            
+  IMPORTING                
+  ev_producer = lr_plane->mv_producer                
+  ev_type = lr_plane->mv_type         
+  ).    
+APPEND lr_plane TO lrt_plane.      
+
+lr_plane = new lcl_plane(        
+  iv_producer = 'filler'        
+  iv_type = 'filler'     
+  ).    
+lr_plane->plane2(            
+  IMPORTING                
+  ev_producer = lr_plane->mv_producer                
+  ev_type = lr_plane->mv_type         
+  ).    
+APPEND lr_plane TO lrt_plane.      
+
+DATA lr_wa_plane TYPE REF TO lcl_plane.    
+
+LOOP AT lrt_plane INTO lr_wa_plane.              
+  out->write( |Producer: { lr_wa_plane->mv_producer } / Type: { lr_wa_plane->mv_type }| ).    
+ENDLOOP.      
+
+ENDMETHOD.ENDCLASS.
 
